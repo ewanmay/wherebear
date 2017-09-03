@@ -1,0 +1,14 @@
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import App from './App';
+import registerServiceWorker from './registerServiceWorker';
+import { HashRouter } from 'react-router-dom';
+// import * as Express from 'express'
+
+ReactDOM.render(
+  <HashRouter basename="/">
+    <App />
+  </HashRouter>,
+  document.getElementById('root') as HTMLElement
+);
+registerServiceWorker();
