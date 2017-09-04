@@ -46,3 +46,7 @@
   margin: 0;
   padding: 10px;
 }
+
+.missing-text {
+  text-align: center
+}

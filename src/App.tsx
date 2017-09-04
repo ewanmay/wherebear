@@ -4,10 +4,11 @@ import '../node_modules/react-responsive-carousel/lib/styles/carousel.min.css';
 import '../node_modules/react-responsive-carousel/lib/styles/main.css';
 import HomePage from './components/home-page';
 import AboutPage from './components/about-page';
+import MissingPage from './components/missing-page';
 import NavBar from './components/nav-bar';
-import { Route, Switch, RouteComponentProps, Redirect } from 'react-router'
+import { Route, Switch, RouteComponentProps, Redirect } from 'react-router';
 import Api from './utils/api';
-import { apiCall, apiMovement, movement } from "./utils/interface";
+import { apiCall, apiMovement, movement } from './utils/interface';
 import { unavailable } from './utils/photo-file';
 
 interface AppState {
@@ -16,21 +17,25 @@ interface AppState {
 
 class App extends React.Component<{}, AppState> {
   constructor() {
-    super()
+    super();
     this.state = {
       movements: []
-    }
+    };
   }
 
-
-  routeRequest = (props: RouteComponentProps<any>) => {
+  routeRequest = (props: RouteComponentProps<string>) => {
     if (props.match.path === '/home' && this.state.movements.length > 1) {
-      return <HomePage movements={this.state.movements} allowDoorOpen={true} currentStatus={this.state.movements[0].status} />
+      return (
+        <HomePage
+          movements={this.state.movements}
+          allowDoorOpen={true}
+          currentStatus={this.state.movements[0].status}
+        />
+      );
+    } else if (props.match.path === '/about') {
+      return <AboutPage />;
     }
-    else if (props.match.path === '/about') {
-      return <AboutPage />
-    }
-    return null;
+    return <MissingPage />;
   }
 
   formatData(data: apiMovement[]) {
@@ -40,20 +45,19 @@ class App extends React.Component<{}, AppState> {
           status: event.bear_status,
           date: new Date(event.event_time),
           image: 'data:image/jpeg;base64,' + event.image
-        }
-      }
-      else {
+        };
+      } else {
         return {
           status: event.bear_status,
           date: new Date(event.event_time),
           image: unavailable
-        }
+        };
       }
-    })
-   return movements = movements.sort((a: movement, b: movement) => b.date.getTime() - a.date.getTime());
+    });
+    return (movements = movements.sort(
+      (a: movement, b: movement) => b.date.getTime() - a.date.getTime()
+    ));
   }
-
-
 
   componentWillMount() {
     Api.getMovementData().then((data: apiCall) => {
@@ -63,14 +67,14 @@ class App extends React.Component<{}, AppState> {
 
   render() {
     return (
-      <div className='view' >
+      <div className="view">
         <NavBar />
         <Switch>
-          <Route exact={true} path='/' render={() => <Redirect to="/home"/>} />
-          <Route exact={true} path='/home' component={this.routeRequest} />
-          <Route exact={true} path='/about' component={this.routeRequest} />
+          <Route exact={true} path="/" render={() => <Redirect to="/home" />} />
+          <Route exact={true} path="/home" component={this.routeRequest} />
+          <Route exact={true} path="/about" component={this.routeRequest} />
         </Switch>
-      </div >
+      </div>
     );
   }
 }
