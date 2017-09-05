@@ -2,6 +2,7 @@
   "name": "tests",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://10.168.1.82:5000",
   "dependencies": {
     "@types/axios": "^0.14.0",
     "@types/jest": "^20.0.8",
