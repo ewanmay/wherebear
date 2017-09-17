@@ -1,12 +1,15 @@
 import * as React from 'react';
+import * as FontAwesome from 'react-fontawesome';
 
 class MissingPage extends React.Component {
   render() {
     return (
       <h1 className="missing-text">
-        Uh oh! Something went wrong! <br /> 
-        Our servers may be down currently.
-        Check back later!
+        Loading   
+        <FontAwesome
+            name="circle-o-notch"
+            spin={true}
+          />
       </h1>
     );
   }

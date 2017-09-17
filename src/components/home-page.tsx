@@ -1,18 +1,22 @@
-import * as React from 'react';
-import { movement } from '../utils/interface';
-import MovementLog from './movement-log';
-import LatestPhoto from './latest-photo';
+import * as React from "react";
+import { movement } from "../utils/interface";
+import MovementLog from "./movement-log";
+import LatestPhoto from "./latest-photo";
 
 interface HomePageProps {
   movements: movement[];
   allowDoorOpen: boolean;
   currentStatus: string;
+  mostRecentPhoto: movement;
+  takePhoto:() => void;
+  loading:boolean
 }
 
 interface HomePageState {
   movements: movement[];
   allowDoorOpen: boolean;
   currentStatus: string;
+  loading: boolean;
 }
 
 class HomePage extends React.Component<HomePageProps, HomePageState> {
@@ -21,7 +25,8 @@ class HomePage extends React.Component<HomePageProps, HomePageState> {
     this.state = {
       movements: this.props.movements,
       allowDoorOpen: this.props.allowDoorOpen,
-      currentStatus: this.props.currentStatus
+      currentStatus: this.props.currentStatus,
+      loading: false,
     };
   }
 
@@ -29,7 +34,8 @@ class HomePage extends React.Component<HomePageProps, HomePageState> {
     const currentState = this.state.movements;
     const newMovement: movement = {
       date: new Date(),
-      status: this.props.currentStatus === 'Outside' ? 'Inside' : 'Outside'
+      status: this.props.currentStatus === "Outside" ? "Inside" : "Outside",
+      image: ""
     };
     this.setState({ movements: currentState.concat(newMovement) });
   }
@@ -43,9 +49,11 @@ class HomePage extends React.Component<HomePageProps, HomePageState> {
           </div>
           <div className="col-md-4 col-lg-4 col-sm-4">
             <LatestPhoto
-              movement={this.state.movements[0]}
               allowDoorOpen={this.state.allowDoorOpen}
               openDoor={() => this.openDoor()}
+              currentPhoto={this.props.mostRecentPhoto}
+              takePhoto={() => this.props.takePhoto()}
+              loading={this.props.loading}
             />
           </div>
         </div>

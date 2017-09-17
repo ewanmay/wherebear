@@ -1,7 +1,7 @@
 export interface movement {
     date: Date;
     status: string;
-    image?: string;
+    image: string;
 }
 
 export interface apiMovement {
@@ -9,6 +9,19 @@ export interface apiMovement {
     event_id: number;
     event_time: string;
     image: string;
+}
+
+export interface photoItem {
+    camera_id: number;
+    id: number;
+    image: string;
+    path: string;
+    time: string;
+    type: string;
+}
+
+export interface photoCall {
+    photos: photoItem[];
 }
 
 export interface apiCall {

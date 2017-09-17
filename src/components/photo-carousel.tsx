@@ -11,7 +11,7 @@ class PhotoCarousel extends React.Component {
         </div>
         <div>
           <img src="/images/bear2.jpg" />
-          <p className="legend">Kitchen Floor Roll Around</p>
+          <p className="legend">Kitchen floor bear</p>
         </div>
         <div>
           <img src="/images/bear3.jpg" />
@@ -23,7 +23,7 @@ class PhotoCarousel extends React.Component {
         </div>
         <div>
           <img src="/images/bear5.jpg" />
-          <p className="legend">Door Bearing</p>
+          <p className="legend">Door bearing</p>
         </div>
       </Carousel>
     );

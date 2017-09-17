@@ -6,13 +6,10 @@ class NavBar extends React.Component<{}, {}> {
         return(
             <Navbar>
             <Navbar.Header>
-              <Navbar.Brand>
-                <a href="/#/home">Where's Bear?</a>
-              </Navbar.Brand>
             </Navbar.Header>
             <Nav>
-              <NavItem eventKey={1} href="/#/home">Home</NavItem>
-              <NavItem eventKey={2} href="/#/about">About</NavItem>
+              <NavItem eventKey={1} href="/#/home">home</NavItem>
+              <NavItem eventKey={2} href="/#/about">about</NavItem>
             </Nav>
           </Navbar>
         );

@@ -5,10 +5,9 @@ import AboutText from './about-text';
 class AboutPage extends React.Component<{}, {}> {
     render() {
         return (
-            <div className="about-page">
-                <div className="col-md-1" />
-                <div className="photo-carousel col-md-6 col-lg-6 col-sm-7">
-                    <h1>
+            <div className="about-page col-md-12 col-lg-12 col-sm-12">
+                <div className="photo-carousel col-md-8 col-lg-8 col-sm-8">
+                    <h1 className="about-header">
                         Meet Bear, our doofus
                 </h1>
                     <PhotoCarousel />
